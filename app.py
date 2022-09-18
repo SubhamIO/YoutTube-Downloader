@@ -1,7 +1,7 @@
 from flask import Flask,request
 from pytube import YouTube
 app = Flask(__name__)
-savepath = "A:\\my_downloads\\"
+# savepath = "A:\\my_downloads\\"
 
 
 @app.route('/')
@@ -10,6 +10,7 @@ def hello_world():
 
 @app.route('/download')
 def downloader():
+    savepath = request.args.get('savepath')
     link = request.args.get('link')
     print(link)
     try:
@@ -25,4 +26,4 @@ def downloader():
 if __name__ == '__main__':
     app.run(debug=True)
 
-#http://127.0.0.1:5000/download?link=https://www.youtube.com/shorts/Br0jfcTDZ14
+#http://127.0.0.1:5000/download?savepath=A:\\my_downloads\\&link=https://www.youtube.com/shorts/Br0jfcTDZ14
